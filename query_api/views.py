@@ -13,6 +13,7 @@ from query_api.schema import SearchSchema
 from query_api.transformations.utils import apply_transformations, contains_word_to_regex, to_vln
 from query_api.transformations.azz import nahuat_orthography
 from query_api.transformations.spanish_thesaurus import es_thesaurus_lookup
+from query_api.transformations.mixtec import mixtec_tone_neutralization, mixtec_flex_orthography
 from query_api.transformations.juxt1235 import neutralize_glottal_stop
 
 
@@ -33,7 +34,7 @@ TRANSFORMATIONS_DICT = {
     'azz': [to_vln, nahuat_orthography, es_thesaurus_lookup, contains_word_to_regex],
     'juxt1235_verb': [neutralize_glottal_stop, es_thesaurus_lookup, contains_word_to_regex],
     'juxt1235_non_verb': [neutralize_glottal_stop, es_thesaurus_lookup, contains_word_to_regex],
-    'yolo1241': [contains_word_to_regex]
+    'yolo1241': [mixtec_flex_orthography, mixtec_tone_neutralization , contains_word_to_regex]
 }
 DEFAULT_TRANSFORMATIONS = [contains_word_to_regex]
 
