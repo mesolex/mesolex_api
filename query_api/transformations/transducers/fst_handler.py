@@ -59,6 +59,8 @@ class FSTHandler(object):
         """
         forms = self.generate_forms(w)
         trie = Trie()
-        for w in forms:
+        if w not in forms:
             trie.add(w)
+        for w_alt in forms:
+            trie.add(w_alt)
         return trie.pattern()
