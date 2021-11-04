@@ -3,6 +3,19 @@ from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.indexes import GinIndex
 from django.db import models
 
+class PlantThesaurus(models.Model):
+    class Meta:
+        verbose_name = 'Plant Thesaurus'
+    
+    genus_species = models.CharField(
+        max_length=256,
+        db_index=True,
+        null=False    
+    )
+    synonym = models.CharField(
+        max_length=256,
+        null=False
+    )
 
 class Entry(models.Model):
     class Meta:

@@ -1,3 +1,3 @@
-create table plant_synonyms(id SERIAL PRIMARY KEY, scientific_name TEXT NOT NULL, synonym TEXT NOT NULL);
-copy plant_synonyms(scientific_name, synonym) from '/home/rpugh/repos/mesolex_api/mixtec_plant_pairs.txt' delimiter ':' CSV HEADER; /* <-- update the absolute path to the file before running */
+/* update the absolute path to the file before running */
+copy lexicon_plantthesaurus(genus_species, synonym) from '/home/rpugh/repos/mesolex_api/lexicon/migrations/plant_thesaurus.csv' delimiter ':' CSV HEADER; 
 

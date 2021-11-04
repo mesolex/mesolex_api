@@ -78,7 +78,8 @@ class MixtecPlantNamesImporter(CsvImporter):
 
     searchable_fields = [
         "family", "genus", "nombre_1", "glosa_nombre_1", "nombre_2", 
-        "glosa_nombre_2", "nombre_3", "glosa_nombre_3", "genus_species"
+        "glosa_nombre_2", "nombre_3", "glosa_nombre_3", "genus_species", 
+        "field_recording_summary", "commentary"
     ]
 
     count = 1
