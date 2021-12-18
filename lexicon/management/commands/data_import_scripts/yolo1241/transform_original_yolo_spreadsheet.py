@@ -25,11 +25,12 @@ for soundgroup in soup.find_all("fn_soundgroup"):
     else:
         summary = summary.text
     try:
-        colname = re.findall(colnamepattern, soundgroup.find("fn_sound").text)[0]
+        audio_file = soundgroup.find("fn_sound").text
+        colname = re.findall(colnamepattern, audio_file)[0]
     except Exception:
         rejects.append(soundgroup)
         continue
-    row = {"Field recording UID": uid, "Field recording summary": summary, "Col. num.": colname}
+    row = {"Field recording UID": uid, "Field recording summary": summary, "Col. num.": colname, "Collection Audio": audio_file}
     rows.append(row)
 
 extra_df = pd.DataFrame(rows, columns=rows[0].keys())
@@ -56,5 +57,18 @@ for g, s in zip(genus_col, species_col):
     genus_species_col.append(gs)
 
 df['genus_species'] = genus_species_col
+
+df = df.rename(columns={"commentary": "comments", "field_recording_summary": "fieldbot_summary"})
+
+df["demca_taxon"] = [""] * len(df)
+df["demca_audio"] = [""] * len(df)
+
+#
+# This next part is just to make sure we have one example of a demca taxon/audio in the db
+#
+id_ = df[df["nombre_1"] == "yu¹ku¹ ti¹ndo³ko²"].index.tolist()[0]
+df.at[id_, "demca_taxon"] = "https://demca.mesolex.org/portal/taxa/index.php?taxon=Canna+tuerckheimii"
+df.at[id_, "demca_audio"] = "https://demca.mesolex.org/portal/ethno/eaf/eafdetail.php?mediaid=193"
+#######################################
 
 df.to_csv("yolo_data_ready_for_import.csv", index=False)
