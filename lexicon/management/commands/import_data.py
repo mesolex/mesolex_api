@@ -131,7 +131,7 @@ class MixtecPlantNamesImporter(CsvImporter):
             new_searchable_strings.append(
                 models.SearchableString(
                     entry=entry,
-                    value=value,
+                    value=value.lower(),
                     language="yolo1241",
                     type_tag=general_type_tag,
                 )
