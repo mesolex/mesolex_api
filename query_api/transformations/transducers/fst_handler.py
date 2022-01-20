@@ -49,7 +49,7 @@ class FSTHandler(object):
         """
         return w2 in self.generate_forms(w1)
 
-    def get_pattern(self, w: str) -> str:
+    def get_pattern(self, w: str, include_ow=True) -> str:
         """
         Get an efficient regex pattern matching all generated forms of a
         given input word.
@@ -59,8 +59,9 @@ class FSTHandler(object):
         """
         forms = self.generate_forms(w)
         trie = Trie()
-        if w not in forms:
-            trie.add(w)
+        if include_ow:
+            if w not in forms:
+                trie.add(w)
         for w_alt in forms:
             trie.add(w_alt)
         return trie.pattern()

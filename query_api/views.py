@@ -16,6 +16,7 @@ from query_api.transformations.spanish_thesaurus import es_thesaurus_lookup
 from query_api.transformations.mixtec import mixtec_tone_neutralization, mixtec_flex_orthography
 from query_api.transformations.plant_thesaurus import plant_thesaurus
 from query_api.transformations.juxt1235 import neutralize_glottal_stop
+from query_api.transformations.bilingual_dict_lookup import es_en_bilingual_dict, en_es_bilingual_dict
 
 
 FILTERS_DICT = {
@@ -32,10 +33,10 @@ FILTERS_DICT = {
 # in regex boundary symbols.
 
 TRANSFORMATIONS_DICT = {
-    'azz': [to_vln, nahuat_orthography, es_thesaurus_lookup, contains_word_to_regex],
+    'azz': [to_vln, nahuat_orthography, es_thesaurus_lookup, contains_word_to_regex, en_es_bilingual_dict, es_en_bilingual_dict],
     'juxt1235_verb': [neutralize_glottal_stop, es_thesaurus_lookup, contains_word_to_regex],
     'juxt1235_non_verb': [neutralize_glottal_stop, es_thesaurus_lookup, contains_word_to_regex],
-    'yolo1241': [mixtec_flex_orthography, mixtec_tone_neutralization, plant_thesaurus, contains_word_to_regex]
+    'yolo1241': [mixtec_flex_orthography, mixtec_tone_neutralization, plant_thesaurus, contains_word_to_regex, en_es_bilingual_dict, es_en_bilingual_dict]
 }
 DEFAULT_TRANSFORMATIONS = [contains_word_to_regex]
 
