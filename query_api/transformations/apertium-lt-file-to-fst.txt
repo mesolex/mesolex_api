@@ -1,0 +1,1 @@
+lt-expand ~/source/apertium/pairs/apertium-eng-spa/apertium-eng-spa.eng-spa.dix | grep -v ' ' | grep -v '<np>' | grep -v '__REGEXP__' | sed 's/:[<>]:/:/g' | sed 's/<[^>]\+>//g' | sort -u | grep '[a-z]' | grep -v '\\' | hfst-strings2fst -j -o /tmp/lookup.eng-spa
